@@ -9,16 +9,17 @@ export class Hero {
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <h2>My Hero </h2>
+    <h2>{{selectedHero.name}} details!</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)" >
+  <li *ngFor="let hero of heroes" (click)="onSelect(hero: Hero) : void {
+                                            this.selectedHero = hero;} " >
     <span class="badge">{{hero.id}}</span> {{hero.name}}
   </li>
 </ul>
-    <div><label>id: </label>{{hero.id}}</div>
+    <div><label>id: </label>{{selectedHero.id}}</div>
     <div>
       <label>name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name">
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
     </div>
     `,
     styles: [`
